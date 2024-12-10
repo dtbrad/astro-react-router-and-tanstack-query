@@ -1,6 +1,17 @@
 ---
+import dbGetContactById from "@db/dbGetContactById";
+import dbGetContacts from "@db/dbGetContacts";
 import Main from "../../components/contactsManager/Main.tsx";
 import Layout from "../../layouts/Layout.astro";
+
+const params = Astro.params;
+const contactId = params.path?.split("/")[1];
+const searchParams = Astro.url.searchParams;
+const q = searchParams.get("q") ?? "";
+
+const [contacts, contactDetail] = await Promise.all([dbGetContacts(q), contactId ? dbGetContactById(contactId) : null]);
+
+console.log({contacts, contactDetail, contactId, params, searchParams, q});
 ---
 
 <Layout title="Contacts Manager">
