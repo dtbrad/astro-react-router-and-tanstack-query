@@ -1,4 +1,5 @@
 ---
+import AppNav from "../components/AppNav.astro";
 const {title} = Astro.props;
 ---
 
@@ -12,6 +13,7 @@ const {title} = Astro.props;
         <title>{title}</title>
     </head>
     <body>
+        <AppNav slot="app-nav" />
         <slot />
     </body>
 </html>
@@ -34,5 +36,14 @@ const {title} = Astro.props;
 
     code {
         font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
+    }
+
+    html,
+    body {
+        height: 100%;
+        margin: 0;
+        color: #121212;
+        display: flex;
+        flex-direction: column;
     }
 </style>

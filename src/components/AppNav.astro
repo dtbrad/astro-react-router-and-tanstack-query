@@ -1,0 +1,44 @@
+---
+const currentPath = Astro.url.pathname;
+const isActive = (path: string) => currentPath.startsWith(path);
+---
+
+<nav id="app-nav" class="app-nav" aria-label="Primary navigation">
+    <h1>Astro Playground</h1>
+    <div class="page-links">
+        <a href="/contacts-manager" class:list={["nav-link", {active: isActive("/contacts-manager")}]}>
+            React Contacts Manager
+        </a>
+        <a href="/svelte-contacts" class:list={["nav-link", {active: isActive("/svelte-contacts")}]}
+            >Minimal Svelte Contacts</a
+        >
+    </div>
+</nav>
+
+<style>
+    .app-nav {
+        display: flex;
+        justify-content: space-between;
+        padding: 0 10px;
+        border-bottom: 1px solid #e3e3e3;
+    }
+
+    .page-links {
+        display: flex;
+        gap: 1.5rem;
+        align-items: center;
+    }
+
+    .nav-link {
+        text-decoration: none;
+        color: inherit;
+        padding: 4px 8px;
+        border-radius: 4px;
+        font-weight: normal;
+        transition: all 0.2s ease;
+    }
+
+    .nav-link.active {
+        color: #51068e;
+    }
+</style>
