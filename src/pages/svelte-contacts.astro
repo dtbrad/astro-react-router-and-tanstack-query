@@ -1,0 +1,18 @@
+---
+import Layout from "src/layouts/Layout.astro";
+import ContactsList from "src/components/ContactsList.svelte";
+import dbGetContacts from "db/dbGetContacts";
+
+const contacts = await dbGetContacts();
+---
+
+<Layout title="Contacts">
+    <main>
+        <ContactsList client:load contacts={contacts} />
+        <style>
+            main {
+                padding: 1rem;
+            }
+        </style>
+    </main>
+</Layout>
